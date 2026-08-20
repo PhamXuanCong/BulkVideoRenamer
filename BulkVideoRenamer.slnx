@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BulkVideoRenamer.Cli/BulkVideoRenamer.Cli.csproj" />
+    <Project Path="src/BulkVideoRenamer.Core/BulkVideoRenamer.Core.csproj" />
+    <Project Path="src/BulkVideoRenamer.Gui/BulkVideoRenamer.Gui.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BulkVideoRenamer.Core.Tests/BulkVideoRenamer.Core.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,12 @@
+## .NET build artifacts
+bin/
+obj/
+publish/
+*.user
+
+## Visual Studio / VS Code
+.vs/
+.vscode/
+
+## Test results
+TestResults/

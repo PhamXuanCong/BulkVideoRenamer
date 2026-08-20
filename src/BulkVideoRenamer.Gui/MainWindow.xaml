@@ -1,0 +1,61 @@
+<Window x:Class="BulkVideoRenamer.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BulkVideoRenamer.Gui"
+        mc:Ignorable="d"
+        Title="Bulk Video Renamer" Height="560" Width="900" MinHeight="420" MinWidth="640">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Folder picker -->
+        <Grid Grid.Row="0" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Folder:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBox Grid.Column="1" x:Name="FolderTextBox" IsReadOnly="True" VerticalContentAlignment="Center" Padding="4"/>
+            <Button Grid.Column="2" Content="Chọn folder..." Margin="8,0,0,0" Padding="10,4" Click="ChooseFolder_Click"/>
+        </Grid>
+
+        <!-- Hashtag input -->
+        <Grid Grid.Row="1" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Hashtag:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBox Grid.Column="1" x:Name="HashtagTextBox" Padding="4" TextChanged="RefreshInputs_Changed"
+                      ToolTip="Vd: #trend #fyp"/>
+        </Grid>
+
+        <!-- Preview grid -->
+        <DataGrid Grid.Row="2" x:Name="PreviewGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                  CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="Horizontal"
+                  HeadersVisibility="Column" Margin="0,0,0,8">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tên cũ" Binding="{Binding OriginalName}" Width="*"/>
+                <DataGridTextColumn Header="Tên mới" Binding="{Binding NewName}" Width="*"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding StatusText}" Width="140"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Actions -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,8">
+            <Button x:Name="UndoButton" Content="Undo lần đổi gần nhất" Padding="10,6" Margin="0,0,8,0" Click="Undo_Click"/>
+            <Button x:Name="CancelButton" Content="Huỷ" Padding="10,6" Margin="0,0,8,0" Click="Cancel_Click"/>
+            <Button x:Name="RenameButton" Content="Đổi tên hàng loạt" Padding="10,6" Click="Rename_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" x:Name="StatusText" Text="" TextWrapping="Wrap" Foreground="#444"/>
+    </Grid>
+</Window>
